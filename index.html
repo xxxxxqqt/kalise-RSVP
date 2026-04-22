@@ -79,7 +79,8 @@
             display: flex; flex-direction: column;
             align-items: center; justify-content: center;
             text-align: center;
-            padding: 100px 24px 60px;
+            padding: 80px 24px 40px;
+            gap: 0;
             position: relative;
             overflow: hidden;
             background:
@@ -136,7 +137,7 @@
             letter-spacing: .3em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 18px;
+            margin-bottom: 10px;
             opacity: 0;
             animation: fadeUp .8s .3s forwards;
         }
@@ -148,7 +149,7 @@
             line-height: 1.25;
             color: var(--text-dark);
             max-width: 700px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             opacity: 0;
             animation: fadeUp .9s .5s forwards;
         }
@@ -161,15 +162,15 @@
             font-size: .88rem;
             letter-spacing: .12em;
             color: var(--text-light);
-            margin-bottom: 32px;
+            margin-bottom: 18px;
             opacity: 0;
             animation: fadeUp .8s .7s forwards;
         }
 
         .baby-wrap {
             position: relative;
-            width: 220px; height: 220px;
-            margin: 0 auto 36px;
+            width: 190px; height: 190px;
+            margin: 0 auto 22px;
             opacity: 0;
             animation: fadeUp 1s .9s forwards;
         }
@@ -496,11 +497,27 @@
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             nav a { font-size: .7rem; padding: 5px 10px; }
-            .hero { padding: 90px 18px 60px; }
-            .baby-wrap { width: 170px; height: 170px; }
-            .letter-card { padding: 40px 24px; }
-            .rsvp-card { padding: 36px 22px; }
+
+            .hero {
+                padding: 72px 18px 36px;
+                justify-content: center;
+            }
+            .hero-eyebrow { margin-bottom: 8px; font-size: .65rem; }
+            .hero h1 { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 3px; }
+            .hero-sub { font-size: .8rem; margin-bottom: 14px; }
+            .baby-wrap { width: 150px; height: 150px; margin-bottom: 18px; }
+            .hero-btn { padding: 12px 28px; font-size: .75rem; }
+            .scroll-hint { bottom: 16px; }
+
+            .letter-card { padding: 36px 20px; }
+            .rsvp-card { padding: 32px 18px; }
             .letter-card::before { font-size: 5rem; top: 14px; left: 18px; }
+        }
+
+        @media (max-width: 380px) {
+            .hero { padding: 65px 14px 30px; }
+            .baby-wrap { width: 130px; height: 130px; margin-bottom: 14px; }
+            .hero h1 { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -616,7 +633,7 @@
 
 <script>
 // ── APPS SCRIPT URL ──
-const scriptURL = 'https://script.google.com/macros/s/AKfycby6OYy4AmKF4s0ex9QMv5pDgj2xzqz1c-Oqx5Mjp8dGmdmBn4_f3BKzo-sftHx4hT83Dg/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxjegb3QTdeIaCBtecclZ50iwbTsFVwG0B8ZsYf-fBz4z8asfzd0fLRN1p_g-XakgMENw/exec';
 
 // ── NAV SCROLL SHADOW ──
 const nav = document.getElementById('nav');
