@@ -514,7 +514,7 @@
 
     <script>
         // Replace this with your Google Apps Script Web App URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyaXoTt3ByC6O_D1WB6C-4cti9pdoNqaIUbf40HFJ9GKZZgGqBHMbT9eDMyT5cns6ia/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxjegb3QTdeIaCBtecclZ50iwbTsFVwG0B8ZsYf-fBz4z8asfzd0fLRN1p_g-XakgMENw/exec';
         const form = document.getElementById('google-sheet-form');
         const formContainer = document.getElementById('form-container');
         const confirmation = document.getElementById('confirmation');
@@ -544,11 +544,19 @@
             // Add timestamp
             formData.append('Timestamp', new Date().toLocaleString());
 
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: formData,
-                mode: 'no-cors'
-            })
+            // Convert form data to URL-encoded string (more reliable with Apps Script)
+            const params = new URLSearchParams();
+            params.append('name',       form.name.value.trim());
+            params.append('attendance', form.attendance.value);
+            params.append('guests',     form.guests.value);
+            params.append('message',    form.message.value.trim());
+            params.append('Timestamp',  new Date().toLocaleString());
+
+            fetch(scriptURL, {
+            method: 'POST',
+            body: params,
+            mode: 'no-cors'
+        })
                 .then(response => {
                     // Hide form and show confirmation
                     formContainer.style.display = 'none';
