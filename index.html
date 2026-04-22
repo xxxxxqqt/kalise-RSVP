@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalise's Godparent Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #a3573a;
+            --secondary: #d48a6f;
+            --accent1: #eaa198;
+            --accent2: #ffcbb6;
+            --bg: #fdd3b4;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Century Gothic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .rounded-text {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            padding: 15px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px 20px;
+            background: radial-gradient(circle, #fff9f5 0%, #fdd3b4 100%);
+            position: relative;
+            overflow: visible;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            animation: fadeInDown 1s ease-out;
+            line-height: 1.3;
+            max-width: 95%;
+            margin-top: 0;
+        }
+
+        /* Floating Cut-out Image Container */
+        .baby-photo-container {
+            width: 280px;
+            height: auto;
+            margin: 10px 0 15px 0;
+            animation: floatingBounce 4s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .baby-photo-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(163, 87, 58, 0.2));
+        }
+
+        .rsvp-btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(163, 87, 58, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            flex-shrink: 0;
+        }
+
+        .rsvp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(163, 87, 58, 0.5);
+        }
+
+        .rsvp-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Letter Section */
+        .letter-section {
+            padding: 80px 20px;
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            min-height: auto;
+        }
+
+        .letter-content {
+            max-width: 600px;
+            background: #fff9f5;
+            padding: 50px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+            border: 2px solid var(--accent2);
+        }
+
+        .letter-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .proposal-text {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            padding: 80px 20px;
+            background-color: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: auto;
+        }
+
+        .rsvp-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--accent2);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(212, 138, 111, 0.3);
+        }
+
+        /* Success Message */
+        #confirmation {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        #confirmation h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        #confirmation p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Theme Decorations */
+        .fairy-house {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .floral-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.2;
+            background-image: url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663585925352/aTgQKVXupraKOgYS.png');
+            background-size: cover;
+            z-index: 1;
+        }
+
+        /* Floating Petals Animation */
+        .petal {
+            position: absolute;
+            background-color: var(--accent1);
+            border-radius: 150% 0 150% 0;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 10s infinite linear;
+        }
+
+        /* Animations */
+        @keyframes floatingBounce {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.02);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(-10vh) rotate(0deg); left: 10%; }
+            100% { transform: translateY(110vh) rotate(360deg); left: 90%; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            nav {
+                padding: 12px 10px;
+                gap: 8px;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 80px 15px 20px;
+                min-height: 100vh;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+                margin-top: 0;
+            }
+
+            .baby-photo-container {
+                width: 200px;
+                margin: 8px 0 12px 0;
+            }
+
+            .letter-section {
+                padding: 60px 15px;
+            }
+
+            .letter-content {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            .letter-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            .proposal-text {
+                font-size: 1.4rem;
+                margin-top: 20px;
+            }
+
+            .rsvp-section {
+                padding: 60px 15px;
+            }
+
+            .rsvp-form {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            .form-group input, .form-group select, .form-group textarea {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .fairy-house {
+                width: 100px;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 10px 8px;
+                gap: 5px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 70px 12px 20px;
+                min-height: 100vh;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+                margin-top: 0;
+            }
+
+            .baby-photo-container {
+                width: 160px;
+                margin: 6px 0 10px 0;
+            }
+
+            .rsvp-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .letter-section {
+                padding: 50px 12px;
+            }
+
+            .letter-content {
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+
+            .letter-content p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .proposal-text {
+                font-size: 1.2rem;
+                margin-top: 15px;
+            }
+
+            .rsvp-section {
+                padding: 50px 12px;
+            }
+
+            .rsvp-form {
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+
+            .form-group label {
+                font-size: 0.95rem;
+            }
+
+            .form-group input, .form-group select, .form-group textarea {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .fairy-house {
+                width: 80px;
+                bottom: 8px;
+                right: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#letter">Letter</a>
+        <a href="#rsvp">RSVP</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="floral-frame"></div>
+        <div class="petal" style="width: 20px; height: 20px; animation-delay: 0s; left: 10%;"></div>
+        <div class="petal" style="width: 15px; height: 15px; animation-delay: 2s; left: 30%;"></div>
+        <div class="petal" style="width: 25px; height: 25px; animation-delay: 4s; left: 50%;"></div>
+        <div class="petal" style="width: 18px; height: 18px; animation-delay: 6s; left: 70%;"></div>
+        <div class="petal" style="width: 22px; height: 22px; animation-delay: 8s; left: 90%;"></div>
+
+        <h1 class="rounded-text">Dear Tito and Tita, I am Kalise</h1>
+        
+        <div class="baby-photo-container">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663577904468/ZuAvHolUVQnAwBVk.png" alt="Baby Kalise">
+        </div>
+
+        <a href="#rsvp" class="rsvp-btn">👉 RSVP Now</a>
+    </section>
+
+    <section id="letter" class="letter-section">
+        <div class="letter-content">
+            <p>"As one of mom and dad's favorite people, your presence in their lives has always been blessing."</p>
+            <p>"If you are willing to accept, we'll be delighted to have you play a special role in my christening."</p>
+            <p>"Your wisdom and guidance will surely enrich my journey."</p>
+            <h2 class="proposal-text rounded-text">Will you be my Godparent?</h2>
+        </div>
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663585925352/LacUycIkuafCPAfu.png" class="fairy-house" alt="Fairy House">
+    </section>
+
+    <section id="rsvp" class="rsvp-section">
+        <div class="rsvp-form" id="form-container">
+            <h2 class="rounded-text" style="margin-bottom: 30px; text-align: center; color: var(--primary);">Confirm Attendance</h2>
+            <form id="google-sheet-form">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" autocomplete="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="attendance">Will you attend? *</label>
+                    <select id="attendance" name="attendance" autocomplete="off" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes, I'll be there!</option>
+                        <option value="No">Sorry, I can't make it</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" name="guests" autocomplete="off" min="1" placeholder="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message for Kalise</label>
+                    <textarea id="message" name="message" autocomplete="off" rows="4" placeholder="Write a sweet message..."></textarea>
+                </div>
+                <button type="submit" class="rsvp-btn" style="width: 100%;">Confirm Attendance</button>
+            </form>
+        </div>
+        <div id="confirmation" class="rsvp-form">
+            <h2 class="rounded-text" style="color: var(--primary);">Thank you! 💕</h2>
+            <p style="margin: 20px 0; font-size: 1.1rem; color: var(--secondary);">See you at Kalise's special day!</p>
+        </div>
+    </section>
+
+    <script>
+        // Replace this with your Google Apps Script Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzNIAIvUB-LteJi8kafePyzsDetPsf7qM13RpeNUsEFXEgG-YF5J0cdxuvpD2UV-jpxUg/exec';
+        const form = document.getElementById('google-sheet-form');
+        const formContainer = document.getElementById('form-container');
+        const confirmation = document.getElementById('confirmation');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Validate form
+            if (!form.name.value.trim()) {
+                alert('Please enter your name');
+                return;
+            }
+            if (!form.attendance.value) {
+                alert('Please select your attendance');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = form.querySelector('button');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Sending...';
+            submitBtn.disabled = true;
+
+            // Create FormData
+            const formData = new FormData(form);
+
+            // Add timestamp
+            formData.append('Timestamp', new Date().toLocaleString());
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: formData,
+                mode: 'no-cors'
+            })
+                .then(response => {
+                    // Hide form and show confirmation
+                    formContainer.style.display = 'none';
+                    confirmation.style.display = 'block';
+                    window.location.hash = '#rsvp';
+                    
+                    // Reset form for potential reuse
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Something went wrong. Please try again.');
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+
+        // Generate additional petals for visual enhancement
+        function createPetals() {
+            const container = document.getElementById('home');
+            for(let i=0; i<5; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.width = Math.random() * 15 + 10 + 'px';
+                petal.style.height = petal.style.width;
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDelay = Math.random() * 10 + 's';
+                petal.style.animationDuration = Math.random() * 5 + 7 + 's';
+                container.appendChild(petal);
+            }
+        }
+        createPetals();
+    </script>
+</body>
+</html>
