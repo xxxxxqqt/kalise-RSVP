@@ -201,8 +201,8 @@
            EVENT DETAILS SECTION
         ══════════════════════════════════════════ */
         .events-section {
-            padding: 80px 20px 70px;
-            background: linear-gradient(160deg, #fff5f0 0%, #ffe8dc 50%, #fdd3b4 100%);
+            padding: 80px 20px 80px;
+            background: linear-gradient(160deg, #fffaf7 0%, #fff0e8 60%, #fde8d8 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -211,178 +211,216 @@
             overflow: hidden;
         }
 
-        .events-section::before {
-            content: '';
-            position: absolute;
-            top: -60px; left: -60px;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(234,161,152,0.25) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .events-section::after {
-            content: '';
-            position: absolute;
-            bottom: -60px; right: -60px;
-            width: 220px; height: 220px;
-            background: radial-gradient(circle, rgba(255,203,182,0.3) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
         .events-title {
             font-family: 'Dancing Script', cursive;
             font-size: 2.8rem;
             color: var(--primary);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             animation: fadeInDown 0.9s ease-out both;
         }
 
-        .events-date-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            color: var(--white);
-            padding: 8px 24px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 700;
+        .events-date-header {
+            text-align: center;
             margin-bottom: 48px;
-            box-shadow: 0 4px 14px rgba(163,87,58,0.25);
-            letter-spacing: 0.03em;
-            animation: fadeInDown 1s ease-out 0.15s both;
+            animation: fadeInDown 1s ease-out 0.1s both;
         }
 
-        /* Path + cards container */
-        .journey-container {
+        .events-date-big {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #e8608a;
+            line-height: 1.1;
+            display: block;
+        }
+
+        .events-day-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            color: #5c3d2e;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* ── Journey Canvas ── */
+        .journey-canvas {
             position: relative;
             width: 100%;
-            max-width: 780px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
+            max-width: 680px;
+            /* height is set by the inner absolute layout */
+            height: 520px;
         }
 
-        /* SVG dashed path */
-        .journey-path-svg {
+        /* SVG path layer */
+        .journey-svg {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
             overflow: visible;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* Event Cards */
-        .event-card {
-            background: rgba(255,255,255,0.92);
-            border: 2px solid var(--accent2);
-            border-radius: 28px;
-            padding: 32px 36px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 8px 32px rgba(163,87,58,0.1);
-            position: relative;
+        /* Illustration images */
+        .evt-illustration {
+            position: absolute;
             z-index: 2;
-            backdrop-filter: blur(6px);
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: slideUpFade 0.7s ease-out both;
         }
 
-        .event-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 40px rgba(163,87,58,0.16);
+        .evt-illustration img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 6px 18px rgba(163,87,58,0.18));
         }
 
-        .event-card:nth-child(1) { animation-delay: 0.2s; }
-        .event-card:nth-child(3) { animation-delay: 0.4s; }
-
-        .event-card-icon {
-            font-size: 2.6rem;
-            margin-bottom: 10px;
-            display: block;
+        .evt-illus-church {
+            top: 0; left: 0;
+            width: 180px;
         }
 
-        .event-card-label {
+        .evt-illus-reception {
+            bottom: 0; right: 0;
+            width: 200px;
+        }
+
+        /* Text blocks */
+        .evt-text {
+            position: absolute;
+            z-index: 3;
+            text-align: left;
+        }
+
+        .evt-text-church {
+            top: 30px;
+            right: 0;
+            width: 52%;
+            text-align: right;
+        }
+
+        .evt-text-reception {
+            bottom: 30px;
+            left: 0;
+            width: 52%;
+            text-align: left;
+        }
+
+        .evt-label {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: var(--primary);
+            font-size: 2.4rem;
+            color: #e8608a;
+            line-height: 1;
             display: block;
-            margin-bottom: 10px;
-        }
-
-        .event-card-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
             margin-bottom: 4px;
         }
 
-        .event-card-address {
-            font-size: 0.88rem;
-            color: var(--secondary);
-            line-height: 1.6;
-            margin-bottom: 12px;
+        .evt-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #5c3d2e;
+            margin-bottom: 2px;
         }
 
-        .event-card-time {
+        .evt-address {
+            font-size: 0.82rem;
+            color: var(--secondary);
+            line-height: 1.55;
+            margin-bottom: 8px;
+        }
+
+        .evt-time {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: var(--accent2);
-            color: var(--primary);
-            padding: 5px 16px;
+            gap: 5px;
+            background: #ffd6ca;
+            color: #a3573a;
+            padding: 4px 14px;
             border-radius: 50px;
-            font-size: 0.92rem;
+            font-size: 0.85rem;
             font-weight: 700;
         }
 
-        /* Dashed connector + bike */
-        .connector-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 420px;
-            height: 110px;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .connector-svg {
-            width: 100%;
-            height: 100%;
-            overflow: visible;
-        }
-
-        /* Baby on bike animation */
+        /* ── Bike rider along the path ── */
         .bike-rider {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.8rem;
-            animation: rideAcross 4s ease-in-out infinite alternate;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-            z-index: 5;
+            font-size: 1.9rem;
+            z-index: 10;
             pointer-events: none;
             line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+            /* JS will drive this via CSS custom properties */
+            offset-path: path('M 160,120 C 180,280 420,260 500,400');
+            offset-rotate: 0deg;
+            animation: bikeAlongPath 3.5s ease-in-out infinite alternate;
         }
 
-        @keyframes rideAcross {
-            0%   { left: 2%;  transform: translateY(-50%) scaleX(1);  }
-            49%  { left: 88%; transform: translateY(-50%) scaleX(1);  }
-            50%  { left: 88%; transform: translateY(-50%) scaleX(-1); }
-            100% { left: 2%;  transform: translateY(-50%) scaleX(-1); }
+        @keyframes bikeAlongPath {
+            0%   { offset-distance: 0%;   transform: scaleX(1); }
+            100% { offset-distance: 100%; transform: scaleX(1); }
         }
 
-        /* Decorative flowers around events section */
+        /* Decorative flowers */
         .deco-flower {
             position: absolute;
-            opacity: 0.18;
+            opacity: 0.15;
             pointer-events: none;
-            font-size: 3rem;
+            font-size: 2.8rem;
             z-index: 0;
+        }
+
+        /* ── Mobile stacked layout ── */
+        @media (max-width: 600px) {
+            .journey-canvas {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+
+            .evt-illustration,
+            .evt-text,
+            .journey-svg { position: static; width: auto !important; }
+
+            .journey-svg { display: none; }
+            .bike-rider  { display: none; }
+
+            .journey-canvas {
+                gap: 0;
+            }
+
+            .mobile-evt-block {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-bottom: 28px;
+            }
+
+            .mobile-evt-block img {
+                width: 130px;
+                filter: drop-shadow(0 6px 16px rgba(163,87,58,0.18));
+                margin-bottom: 10px;
+            }
+
+            .evt-label  { text-align: center; }
+            .evt-name   { text-align: center; }
+            .evt-address{ text-align: center; }
+
+            .mobile-connector {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 4px 0 20px;
+                gap: 2px;
+                color: #eaa198;
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .mobile-evt-block  { display: contents; }
+            .mobile-connector  { display: none; }
         }
 
         /* ── RSVP Section ── */
@@ -549,10 +587,7 @@
             .rsvp-btn { padding: 11px 30px; font-size: 0.98rem; }
 
             .events-title { font-size: 2.2rem; }
-            .events-date-badge { font-size: 0.88rem; padding: 7px 18px; margin-bottom: 36px; }
-            .event-card { padding: 26px 22px; }
-            .event-card-label { font-size: 1.7rem; }
-            .event-card-name { font-size: 1rem; }
+            .events-date-big { font-size: 2.4rem; }
 
             .rsvp-form { padding: 28px 20px; border-radius: 22px; }
             .rsvp-section-title { font-size: 2rem; }
@@ -571,8 +606,7 @@
             .baby-photo-container { width: 160px; }
             .events-section { padding: 60px 14px 55px; }
             .events-title { font-size: 1.9rem; }
-            .connector-wrapper { height: 90px; }
-            .bike-rider { font-size: 1.5rem; }
+            .events-date-big { font-size: 2rem; }
         }
     </style>
 </head>
@@ -619,54 +653,88 @@
          EVENT DETAILS
     ══════════════════════════════════════ -->
     <section id="events" class="events-section">
-        <!-- Decorative petals -->
-        <span class="deco-flower" style="top:40px;left:20px">🌸</span>
-        <span class="deco-flower" style="top:60px;right:30px">🌷</span>
-        <span class="deco-flower" style="bottom:50px;left:40px">🌺</span>
-        <span class="deco-flower" style="bottom:40px;right:20px">🌸</span>
+        <span class="deco-flower" style="top:30px;left:16px">🌸</span>
+        <span class="deco-flower" style="top:50px;right:20px">🌷</span>
+        <span class="deco-flower" style="bottom:40px;left:30px">🌺</span>
+        <span class="deco-flower" style="bottom:30px;right:16px">🌸</span>
 
         <h2 class="events-title script-font">Event Details</h2>
-        <div class="events-date-badge">
-            📅&nbsp; May 10, 2026 &nbsp;·&nbsp; Sunday
+
+        <div class="events-date-header">
+            <span class="events-date-big">May 10, 2026</span>
+            <span class="events-day-label">Sunday</span>
         </div>
 
-        <div class="journey-container">
+        <!-- ── Desktop diagonal layout ── -->
+        <div class="journey-canvas" id="journeyCanvas">
 
-            <!-- CHURCH CARD -->
-            <div class="event-card">
-                <span class="event-card-icon">⛪</span>
-                <span class="event-card-label script-font">Church</span>
-                <p class="event-card-name">St. Michael the Archangel Parish</p>
-                <p class="event-card-address">Gen. Evangelista St., Poblacion,<br>Bacoor City, Cavite</p>
-                <span class="event-card-time">🕙&nbsp; 10:00 AM</span>
+            <!-- SVG path + bike (desktop) -->
+            <svg class="journey-svg" id="journeySVG" viewBox="0 0 680 520" preserveAspectRatio="xMidYMid meet">
+                <!-- Dashed path: church illus center → reception illus center -->
+                <path id="travelPath"
+                      d="M 165,155 C 200,280 430,280 510,375"
+                      fill="none"
+                      stroke="#f4a7b9"
+                      stroke-width="3"
+                      stroke-dasharray="10 7"
+                      stroke-linecap="round"/>
+            </svg>
+
+            <!-- Church illustration (top-left) -->
+            <div class="evt-illustration evt-illus-church">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663585925352/LacUycIkuafCPAfu.png"
+                     alt="Church illustration">
             </div>
 
-            <!-- CONNECTOR WITH BIKE -->
-            <div class="connector-wrapper">
-                <svg class="connector-svg" viewBox="0 0 400 100" preserveAspectRatio="none">
-                    <path id="bikePath"
-                          d="M 20,50 C 100,10 300,90 380,50"
-                          fill="none"
-                          stroke="#eaa198"
-                          stroke-width="2.5"
-                          stroke-dasharray="8 6"
-                          stroke-linecap="round"/>
-                    <!-- Arrow tip -->
-                    <polygon points="376,44 388,50 376,56" fill="#eaa198" opacity="0.7"/>
-                </svg>
-                <div class="bike-rider" title="Baby Kalise riding to the reception 🚲">🚴‍♀️</div>
+            <!-- Church text (top-right) -->
+            <div class="evt-text evt-text-church">
+                <span class="evt-label">Church</span>
+                <p class="evt-name">St. Michael the Archangel Parish</p>
+                <p class="evt-address">Gen. Evangelista St., Poblacion,<br>Bacoor City, Cavite</p>
+                <span class="evt-time">🕙&nbsp; 10:00 AM</span>
             </div>
 
-            <!-- RECEPTION CARD -->
-            <div class="event-card">
-                <span class="event-card-icon">🎉</span>
-                <span class="event-card-label script-font">Reception</span>
-                <p class="event-card-name">Antorina – Private Pool &amp; Events Place</p>
-                <p class="event-card-address">Britsun St., Panapaan II,<br>Bacoor City, Cavite</p>
-                <span class="event-card-time">🕛&nbsp; 12:00 NN</span>
+            <!-- Animated bike rider following the path -->
+            <div class="bike-rider" id="bikeRider">🚴‍♀️</div>
+
+            <!-- Reception text (bottom-left) -->
+            <div class="evt-text evt-text-reception">
+                <span class="evt-label">Reception</span>
+                <p class="evt-name">Antorina – Private Pool &amp; Events Place</p>
+                <p class="evt-address">Britsun St., Panapaan II,<br>Bacoor City, Cavite</p>
+                <span class="evt-time">🕛&nbsp; 12:00 NN</span>
             </div>
 
-        </div><!-- /.journey-container -->
+            <!-- Reception illustration (bottom-right) -->
+            <div class="evt-illustration evt-illus-reception">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663577904468/ZuAvHolUVQnAwBVk.png"
+                     alt="Reception illustration">
+            </div>
+
+        </div><!-- /.journey-canvas -->
+
+        <!-- ── Mobile stacked layout ── -->
+        <div class="mobile-journey" style="display:none;flex-direction:column;align-items:center;width:100%;max-width:360px;gap:0">
+            <div class="mobile-evt-block">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663585925352/LacUycIkuafCPAfu.png" alt="Church" style="width:120px;filter:drop-shadow(0 5px 14px rgba(163,87,58,.18));margin-bottom:10px">
+                <span class="evt-label" style="text-align:center">Church</span>
+                <p class="evt-name" style="text-align:center">St. Michael the Archangel Parish</p>
+                <p class="evt-address" style="text-align:center">Gen. Evangelista St., Poblacion,<br>Bacoor City, Cavite</p>
+                <span class="evt-time">🕙&nbsp; 10:00 AM</span>
+            </div>
+            <div class="mobile-connector">
+                <span>🚴‍♀️</span>
+                <span style="font-size:0.8rem;color:#f4a7b9;letter-spacing:2px">- - - - -</span>
+            </div>
+            <div class="mobile-evt-block">
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663577904468/ZuAvHolUVQnAwBVk.png" alt="Reception" style="width:120px;filter:drop-shadow(0 5px 14px rgba(163,87,58,.18));margin-bottom:10px">
+                <span class="evt-label" style="text-align:center">Reception</span>
+                <p class="evt-name" style="text-align:center">Antorina – Private Pool &amp; Events Place</p>
+                <p class="evt-address" style="text-align:center">Britsun St., Panapaan II,<br>Bacoor City, Cavite</p>
+                <span class="evt-time">🕛&nbsp; 12:00 NN</span>
+            </div>
+        </div>
+
     </section>
 
     <!-- ══════════════════════════════════════
@@ -772,22 +840,79 @@
         }
         createPetals();
 
-        /* ── Scroll-reveal for event cards ── */
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.style.opacity = '1';
-                    e.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.15 });
+        /* ── Mobile / desktop layout toggle ── */
+        function applyLayout() {
+            const canvas = document.getElementById('journeyCanvas');
+            const mobile = document.querySelector('.mobile-journey');
+            if (window.innerWidth <= 600) {
+                canvas.style.display = 'none';
+                mobile.style.display = 'flex';
+            } else {
+                canvas.style.display = 'block';
+                mobile.style.display = 'none';
+            }
+        }
+        applyLayout();
+        window.addEventListener('resize', applyLayout);
 
-        document.querySelectorAll('.event-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
+        /* ── Bike animation along SVG path ── */
+        (function () {
+            const bike   = document.getElementById('bikeRider');
+            const path   = document.getElementById('travelPath');
+            if (!bike || !path) return;
+
+            const DURATION = 3200; // ms one-way
+            let start = null;
+            let forward = true;
+            const totalLen = path.getTotalLength();
+
+            function animate(ts) {
+                if (!start) start = ts;
+                let elapsed = ts - start;
+                let t = Math.min(elapsed / DURATION, 1);
+                // ease in-out
+                t = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+                const dist = forward ? t * totalLen : (1-t) * totalLen;
+                const pt   = path.getPointAtLength(dist);
+
+                // get direction
+                const delta = 2;
+                const pt2   = path.getPointAtLength(Math.min(dist + delta, totalLen));
+                const angle = Math.atan2(pt2.y - pt.y, pt2.x - pt.x);
+
+                // position relative to SVG container
+                const svg    = document.getElementById('journeySVG');
+                const svgRect = svg.getBoundingClientRect();
+                const canvas2 = document.getElementById('journeyCanvas');
+                const canvasRect = canvas2.getBoundingClientRect();
+
+                // SVG viewBox is 680×520, map to actual rendered size
+                const scaleX = svgRect.width  / 680;
+                const scaleY = svgRect.height / 520;
+
+                const x = pt.x * scaleX + (svgRect.left - canvasRect.left);
+                const y = pt.y * scaleY + (svgRect.top  - canvasRect.top);
+
+                bike.style.left = (x - 14) + 'px';
+                bike.style.top  = (y - 14) + 'px';
+                // flip emoji on return trip
+                bike.style.transform = forward ? 'scaleX(1)' : 'scaleX(-1)';
+
+                if (elapsed >= DURATION) {
+                    forward = !forward;
+                    start = ts;
+                }
+                requestAnimationFrame(animate);
+            }
+
+            // Only run on desktop
+            function startBike() {
+                if (window.innerWidth > 600) requestAnimationFrame(animate);
+            }
+            startBike();
+            window.addEventListener('resize', startBike);
+        })();
     </script>
 </body>
 </html>
