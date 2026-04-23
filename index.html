@@ -351,18 +351,32 @@
             align-items: center;
             margin: 5px 0 20px;
             opacity: 0.6;
+            position: relative;
+            width: 100%;
+            height: 60px;
+            justify-content: center;
         }
 
         .mob-connector img {
             width: 40px;
-            margin-bottom: 5px;
-            animation: bikeWobble 0.6s ease-in-out infinite alternate;
+            position: absolute;
+            left: 0;
+            animation: mobBikeMove 4s ease-in-out infinite;
+        }
+
+        @keyframes mobBikeMove {
+            0% { left: 10%; transform: scaleX(1); }
+            45% { left: 80%; transform: scaleX(1); }
+            50% { left: 80%; transform: scaleX(-1); }
+            95% { left: 10%; transform: scaleX(-1); }
+            100% { left: 10%; transform: scaleX(1); }
         }
 
         .mob-connector-line {
             color: var(--accent1);
             font-weight: bold;
             letter-spacing: 2px;
+            margin-top: 25px;
         }
 
         /* ══════════════════════════════════════════
@@ -650,7 +664,7 @@
                      alt="Reception venue">
                 <span class="evt-label script">Reception</span>
                 <p class="evt-name">Antorina – Private Pool &amp; Events Place</p>
-                <p class="evt-address">Britsun St., Panapaan II,<br>Bacoor City, Cavite</p>
+                <p class="evt-address">Britsum St., Panapaan II,<br>Bacoor City, Cavite</p>
                 <span class="evt-time">🕛&nbsp; 12:00 NN</span>
             </div>
 
@@ -758,7 +772,6 @@
     (function () {
         const hero = document.getElementById('home');
         const seeds = [
-            { w: 20, d: 0,  l: '10%' },
             { w: 15, d: 2,  l: '30%' },
             { w: 25, d: 4,  l: '50%' },
             { w: 18, d: 6,  l: '70%' },
