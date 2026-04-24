@@ -237,7 +237,7 @@
             width: 100%;
             max-width: 680px;
             height: 520px;
-            overflow: hidden;          /* bike never escapes this box */
+            overflow: visible;
         }
 
         /* SVG path layer sits behind everything */
@@ -307,7 +307,7 @@
             font-weight: 700;
         }
 
-        /* Girl-on-bike: JS positions this, desktop only */
+        /* Girl-on-bike: JS positions this */
         #bikeRider {
             position: absolute;
             width: 64px;
@@ -318,65 +318,9 @@
             transform-origin: center center;
         }
 
-        /* ── Mobile stacked layout ── */
+        /* ── Mobile stacked layout (HIDDEN) ── */
         #journeyMobile {
             display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 340px;
-        }
-
-        .mob-evt {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            background: rgba(255,255,255,0.5);
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(163,87,58,0.05);
-        }
-
-        .mob-evt img {
-            width: 140px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 6px 12px rgba(163,87,58,0.12));
-        }
-
-        .mob-connector {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 5px 0 20px;
-            opacity: 0.6;
-            position: relative;
-            width: 100%;
-            height: 60px;
-            justify-content: center;
-        }
-
-        .mob-connector img {
-            width: 40px;
-            position: absolute;
-            left: 0;
-            animation: mobBikeMove 4s ease-in-out infinite;
-        }
-
-        @keyframes mobBikeMove {
-            0% { left: 10%; transform: scaleX(1); }
-            45% { left: 80%; transform: scaleX(1); }
-            50% { left: 80%; transform: scaleX(-1); }
-            95% { left: 10%; transform: scaleX(-1); }
-            100% { left: 10%; transform: scaleX(1); }
-        }
-
-        .mob-connector-line {
-            color: var(--accent1);
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-top: 25px;
         }
 
         /* ══════════════════════════════════════════
@@ -493,20 +437,9 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes bikeWobble {
-            from { transform: rotate(-4deg) translateY(0); }
-            to   { transform: rotate(4deg)  translateY(-3px); }
-        }
-
         /* ══════════════════════════════════════════
            RESPONSIVE
         ══════════════════════════════════════════ */
-
-        /* Swap desktop canvas ↔ mobile stack at 700 px */
-        @media (max-width: 700px) {
-            #journeyDesktop { display: none !important; }
-            #journeyMobile  { display: flex !important; }
-        }
 
         @media (max-width: 768px) {
             nav { padding: 10px; }
@@ -525,6 +458,19 @@
             .events-title { font-size: 2.1rem; }
             .events-date-big { font-size: 2.4rem; }
 
+            /* Mobile Journey Layout */
+            #journeyDesktop {
+                max-width: 340px;
+                height: 480px;
+            }
+            .evt-illus-church { width: 120px; }
+            .evt-illus-reception { width: 140px; }
+            .evt-label { font-size: 1.8rem; }
+            .evt-name { font-size: 0.8rem; }
+            .evt-address { font-size: 0.7rem; }
+            .evt-time { font-size: 0.75rem; padding: 3px 10px; }
+            #bikeRider { width: 45px; }
+
             .rsvp-card { padding: 26px 18px; border-radius: 22px; }
             .rsvp-title { font-size: 2rem; }
         }
@@ -535,6 +481,11 @@
             .baby-photo-container { width: 155px; }
             .events-title { font-size: 1.85rem; }
             .events-date-big { font-size: 2rem; }
+            
+            #journeyDesktop {
+                max-width: 300px;
+                height: 450px;
+            }
         }
     </style>
 </head>
@@ -576,10 +527,10 @@
 
     <!-- ══ EVENT DETAILS ══ -->
     <section id="events" class="events-section">
-        <span class="deco-flower" style="top:28px;left:14px"   aria-hidden="true">🌸</span>
-        <span class="deco-flower" style="top:44px;right:18px"  aria-hidden="true">🌷</span>
-        <span class="deco-flower" style="bottom:36px;left:28px"aria-hidden="true">🌺</span>
-        <span class="deco-flower" style="bottom:28px;right:14px"aria-hidden="true">🌸</span>
+        <!-- Horizontal Flowers at Top -->
+        <div style="display: flex; gap: 10px; margin-bottom: 15px; font-size: 1.5rem;">
+            <span>🌸</span><span>🌷</span><span>🌺</span><span>🌸</span>
+        </div>
 
         <h2 class="events-title script">Event Details</h2>
 
@@ -588,10 +539,10 @@
             <span class="events-day-label">Sunday</span>
         </div>
 
-        <!-- ════ DESKTOP: absolute diagonal canvas ════ -->
+        <!-- ════ JOURNEY CANVAS (Diagonal for both Mobile & Desktop) ════ -->
         <div id="journeyDesktop">
 
-            <!-- Dashed path (desktop only) -->
+            <!-- Dashed path -->
             <svg id="journeySVG" viewBox="0 0 680 520"
                  preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                 <path id="travelPath"
@@ -617,7 +568,7 @@
                 <span class="evt-time">🕙&nbsp; 10:00 AM</span>
             </div>
 
-            <!-- Girl on bike — follows the dashed path, desktop only -->
+            <!-- Girl on bike — follows the dashed path -->
             <img id="bikeRider"
                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663577904468/ZuAvHolUVQnAwBVk.png"
                  alt="">
@@ -638,37 +589,8 @@
 
         </div><!-- /#journeyDesktop -->
 
-        <!-- ════ MOBILE: stacked cards ════ -->
-        <div id="journeyMobile">
-
-            <!-- Church card -->
-            <div class="mob-evt">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663578153960/kAZGWqUUudqMXfnx.png"
-                     alt="Church illustration">
-                <span class="evt-label script">Church</span>
-                <p class="evt-name">St. Michael the Archangel Parish</p>
-                <p class="evt-address">Gen. Evangelista St., Poblacion,<br>Bacoor City, Cavite</p>
-                <span class="evt-time">🕙&nbsp; 10:00 AM</span>
-            </div>
-
-            <!-- Connector with girl-on-bike -->
-            <div class="mob-connector" aria-hidden="true">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663577904468/ZuAvHolUVQnAwBVk.png"
-                     alt="">
-                <span class="mob-connector-line">- - - - - - -</span>
-            </div>
-
-            <!-- Reception card -->
-            <div class="mob-evt">
-                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663578153960/CWYUQagHKunHJoRd.png"
-                     alt="Reception venue">
-                <span class="evt-label script">Reception</span>
-                <p class="evt-name">Antorina – Private Pool &amp; Events Place</p>
-                <p class="evt-address">Britsum St., Panapaan II,<br>Bacoor City, Cavite</p>
-                <span class="evt-time">🕛&nbsp; 12:00 NN</span>
-            </div>
-
-        </div><!-- /#journeyMobile -->
+        <!-- Hidden Mobile Stacked Layout -->
+        <div id="journeyMobile"></div>
 
     </section>
 
@@ -798,14 +720,11 @@
 
 
     /* ── Bike animation ─────────────────────────────────────
-       • Lives ONLY inside #journeyDesktop (overflow:hidden)
-       • Uses the girl-on-bike image (same as baby photo asset)
        • Follows the SVG dashed path via getPointAtLength()
        • Loops: Church → Reception → Church → Reception …
-       • Only runs on desktop (> 700 px); cancelled on resize to mobile
+       • Runs on both mobile and desktop
     ──────────────────────────────────────────────────────── */
     (function () {
-        const DESKTOP_BP = 700;    // must match CSS @media breakpoint
         const DURATION   = 3600;   // ms per one-way trip
 
         const bike    = document.getElementById('bikeRider');
@@ -842,14 +761,14 @@
             const px = pt.x * sx + (svgRect.left - canvasRect.left);
             const py = pt.y * sy + (svgRect.top  - canvasRect.top);
 
-            // Center image on path point (half-width / half-height)
-            const hw = bike.offsetWidth  / 2 || 32;
-            const hh = bike.offsetHeight / 2 || 32;
+            // Center image on path point
+            const hw = bike.offsetWidth  / 2 || 22;
+            const hh = bike.offsetHeight / 2 || 22;
 
             bike.style.left      = (px - hw) + 'px';
             bike.style.top       = (py - hh) + 'px';
             bike.style.opacity   = '1';
-            // Mirror on return trip so bike faces the right direction
+            // Mirror on return trip
             bike.style.transform = forward ? 'scaleX(1)' : 'scaleX(-1)';
 
             if (raw >= 1) {
@@ -861,18 +780,13 @@
         }
 
         function startBike() {
-            if (window.innerWidth > DESKTOP_BP) {
-                if (!rafId) rafId = requestAnimationFrame(tick);
-            } else {
-                if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-                bike.style.opacity = '0';
-                startTs = null;   // reset so it restarts fresh on resize back
-            }
+            if (!rafId) rafId = requestAnimationFrame(tick);
         }
 
-        // Wait for images to load so offsetWidth/Height are correct
         window.addEventListener('load', startBike);
-        window.addEventListener('resize', startBike);
+        window.addEventListener('resize', () => {
+            startTs = null; // Reset timing on resize to keep it smooth
+        });
     })();
     </script>
 </body>
